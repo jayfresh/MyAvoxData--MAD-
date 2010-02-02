@@ -1,1 +1,3 @@
 MAD is an application built - to begin with - on top of wiki-data, which is an application build on TiddlyWeb.
+
+Make sure you create a symlink to a static directory, or set the static directory in your apache config!
