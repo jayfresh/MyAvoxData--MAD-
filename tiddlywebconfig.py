@@ -6,7 +6,6 @@ config = {
             'tiddlywebplugins.methodhack',
             'tiddlywebplugins.pathinfohack',
             'tiddlywebplugins.static', # a development trick so I can use CherryPy - symlink your static folder here
-            'routes'
         ],
         'maps_api_key': 'ABQIAAAAfIA5i-5lcivJMUvTzLDrmxQg7wZe1qASdla1M-DFyiqfOoWRghT6gGJohIOLIoy-3oR7sKWQfPvlxA', # http://wiki-data.com/
 	'server_host': {
