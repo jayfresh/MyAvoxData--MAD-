@@ -17,7 +17,7 @@ config = {
             }],
         'maps_api_key': 'ABQIAAAAfIA5i-5lcivJMUvTzLDrmxRO20Db7Xdd4lc_seIy4R9wZKUPyhSJfJnlwAdfjEPLHleUU5PcZhxZxA', # http://wiki-data.com/
 	'server_host': {
-		'host': 'www.myavoxdata.com',
+		'host': 'test.myavoxdata.com',
 		'scheme': 'http',
 		'port': '80',
 	},
