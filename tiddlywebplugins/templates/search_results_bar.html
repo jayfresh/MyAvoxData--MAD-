@@ -25,12 +25,14 @@
 		{% elif access_count == 1 %}
 			There is 1 result.
 		{%- else -%}
-			You have access to {{access_count}} results, showing results {{from}} to {{to}}.
+			You have access to {{access_count}} results, showing results {{from}} to {{to}}
 		{%- endif %}
-		{% if resultcount == 1 %}
-			<span>If you log-in, you will have access to 1 search result</span>
-		{% else %}
-			<span>If you log-in, you will have access to {{resultcount}} search results</span>
+		{% if commonVars.usersign.name == "GUEST" %}.
+			{% if resultcount == 1 %}
+				<span>If you log-in, you will have access to 1 search result</span>
+			{% else %}
+				<span>If you log-in, you will have access to {{resultcount}} search results</span>
+			{% endif %}
 		{% endif %}
 		 - <span class="filter"><a href="#">add a filter</a>? </span>
 		<span id="pageDistance">{{pageDistance}}</span>

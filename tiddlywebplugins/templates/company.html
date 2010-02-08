@@ -92,6 +92,22 @@
 								<span><a href='http://{{ tiddler.fields.company_website }}'>{{ tiddler.fields.company_website }}</a></span>
 							</td>
 						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Date of Incorporation:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields.date_of_registration }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Date of Dissolution:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields.date_of_dissolution }}</span>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -204,7 +220,7 @@
 								<label>Registration Number:</label>
 							</td>
 							<td>
-								<span>{{ tiddler.fields['registration_number__operational_'] }}</span>
+								<span>{{ tiddler.fields['registration_number__jurisdiction_'] }}</span>
 							</td>
 						</tr>
 						<tr>
