@@ -1,7 +1,7 @@
 {% set count = tiddlers|count %}
 {% set from = queryIndex+1 %}
 {% set to = queryIndex+count %}
-{% set count_to_end = resultcount - to %}
+{% set count_to_end = access_count - to %}
 <div id="tableinfo">
 	<div id="columnPicker" class="onlyjs">
 		<button class="darkgreen whitetext lightborder caps right" id="pickerControl">Hide/Show Columns</button>
