@@ -15,9 +15,9 @@ config = {
                     #{'db_config': 'sqlite:///test.db'}]),
                 ],
             }],
-        'maps_api_key': 'ABQIAAAAfIA5i-5lcivJMUvTzLDrmxQg7wZe1qASdla1M-DFyiqfOoWRghT6gGJohIOLIoy-3oR7sKWQfPvlxA', # http://wiki-data.com/
+        'maps_api_key': 'ABQIAAAAfIA5i-5lcivJMUvTzLDrmxRO20Db7Xdd4lc_seIy4R9wZKUPyhSJfJnlwAdfjEPLHleUU5PcZhxZxA', # http://wiki-data.com/
 	'server_host': {
-		'host': 'test.myavoxdata.com',
+		'host': 'www.myavoxdata.com',
 		'scheme': 'http',
 		'port': '80',
 	},

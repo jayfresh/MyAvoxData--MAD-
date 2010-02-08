@@ -1,0 +1,352 @@
+{% extends "wikidatabase.html" %}
+{% block body %}
+<div id="pagenav">
+	<ul>
+		<li><a href="/index.html" class="lightborder darkgreen caps">Home</a></li>
+		<li><a href="#" class="lightborder darkgreen caps onlyjs" id="backnav">Back</a></li>
+	</ul>
+</div>
+
+<div id="searchtitle" class="darkgreen">
+	<div class="wrap">
+		<h2>Company record</h2>
+		<span> - Your chosen company's records can be found below</span>
+	</div>
+</div>
+
+<div id='recordcontainer' class='wrap hide'>
+	<div class='buttcontainer'>
+		<a href='{{ tiddler.title }}.challenge' class='button'>
+		Challenge Information
+		</a>
+					
+		<a href='{{ tiddler.title }}.request' class='button'>
+		Request More Information
+		</a>
+	</div>
+	<div id='tabscontainer'>
+		<div class='record'>
+			<div class='tab short'>
+				<h3>Entity Name</h3>				
+			</div>
+			<div class='entitycontent'>
+				<table>
+					<tbody>
+						<tr>
+							<td class='labelwidth'>
+								<label>Legal Name:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields.legal_name }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>AVID:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.title }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Previous Name(s):</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['previous_name_s_'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Trades As Name(s):</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['trades_as_name_s_'] }}</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class='record'>
+			<div class='tab'>
+				<h3>Entity Information</h3>				
+			</div>
+			<div class='entitycontent'>
+				<table>
+					<tbody>
+						<tr>
+							<td class='labelwidth'>
+								<label>Trading Status:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields.trading_status }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Company Website:</label>
+							</td>
+							<td>
+								<span><a href='http://{{ tiddler.fields.company_website }}'>{{ tiddler.fields.company_website }}</a></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class='record'>
+			<div class='tab'>
+				<h3>Operational Address</h3>				
+			</div>
+			<div class='entitycontent' id='op_address_div'>
+				<div class="adr">
+					{% if tiddler.fields.operational_po_box %}
+					<div class="post-office-box">
+						{{ tiddler.fields.operational_po_box }}
+					</div>
+					{% endif %}
+					{% if tiddler.fields.operational_floor or tiddler.fields.operational_building %}
+					<div class="extended-address">
+						{% if tiddler.fields.operational_floor %}{{ tiddler.fields.operational_floor }} {% endif %}{% if tiddler.fields.operational_building %}{{ tiddler.fields.operational_building }}{% endif %}
+					</div>
+					{% endif %}
+					<div class="street-address">
+						{% if tiddler.fields.operational_street_1 %}{{ tiddler.fields.operational_street_1 }}{%if tiddler.fields.operational_street_1 or tiddler.fields.operational_street_2%},{%endif%} {% endif -%}
+						{% if tiddler.fields.operational_street_2 %}{{ tiddler.fields.operational_street_2 }}{%if tiddler.fields.operational_street_3%},{%endif%} {% endif -%}
+						{% if tiddler.fields.operational_street_3 %}{{ tiddler.fields.operational_street_3 }}{% endif %}
+					</div>
+					<div>
+						{% if tiddler.fields.operational_city -%}
+						<span class="locality">{{ tiddler.fields.operational_city }}</span>
+							{%-if tiddler.fields.operational_state or tiddler.fields.operational_country-%}, {%endif-%}
+						{%- endif -%}
+						{%- if tiddler.fields.operational_state -%}
+						<span class="region operational_state">{{ tiddler.fields.operational_state }}</span>
+							{%- if tiddler.fields.operational_country-%}, {%endif-%}
+						{%- endif -%}
+						{%- if tiddler.fields.operational_country -%}
+						<span class="country-name operational_country">{{ tiddler.fields.operational_country }}</span>
+						{%- endif %}
+					</div>
+					<div>
+						{% if tiddler.fields.operational_postcode %}
+						<span class="postal-code">{{ tiddler.fields.operational_postcode }}</span>
+						{% endif %}
+					</div>
+				</div>
+				<script type="text/javascript">
+					window.gMaps = {
+						apiKey: "{{ maps_api_key }}",
+						op_company: "{{ tiddler.fields.legal_name }}",
+						op_address: "" // this gets set by another function
+					};
+				</script>
+				<div id="operational_map" class='map' style="width:690px; height:400px"></div>
+			</div>
+		</div>
+		
+		<div class='record'>
+			<div class='tab'>
+				<h3>Registered Location</h3>				
+			</div>
+			<div class='entitycontent' id='reg_address_div'>
+				<div class="adr">
+					{% if tiddler.fields.registered_po_box %}
+					<div class="post-office-box">
+						{{ tiddler.fields.registered_po_box }}
+					</div>
+					{% endif %}
+					{% if tiddler.fields.registered_floor or tiddler.fields.registered_building %}
+					<div class="extended-address">
+						{% if tiddler.fields.registered_floor %}{{ tiddler.fields.registered_floor }} {% endif %}{% if tiddler.fields.registered_building %}{{ tiddler.fields.registered_building }}{% endif %}
+					</div>
+					{% endif %}
+					<div class="street-address">
+						{% if tiddler.fields.registered_street_1 %}{{ tiddler.fields.registered_street_1 }}{%if tiddler.fields.registered_street_1 or tiddler.fields.registered_street_2%},{%endif%} {% endif -%}
+						{% if tiddler.fields.registered_street_2 %}{{ tiddler.fields.registered_street_2 }}{%if tiddler.fields.registered_street_3%},{%endif%} {% endif -%}
+						{% if tiddler.fields.registered_street_3 %}{{ tiddler.fields.registered_street_3 }}{% endif %}
+					</div>
+					<div>
+						{% if tiddler.fields.registered_city -%}
+						<span class="locality">{{ tiddler.fields.registered_city }}</span>
+							{%-if tiddler.fields.registered_state or tiddler.fields.registered_country-%}, {%endif-%}
+						{%- endif -%}
+						{%- if tiddler.fields.registered_state -%}
+						<span class="region registered_state">{{ tiddler.fields.registered_state }}</span>
+							{%- if tiddler.fields.registered_country-%}, {%endif-%}
+						{%- endif -%}
+						{%- if tiddler.fields.registered_country -%}
+						<span class="country-name registered_country">{{ tiddler.fields.registered_country }}</span>
+						{%- endif %}
+					</div>
+					<div>
+						{% if tiddler.fields.registered_postcode %}
+						<span class="postal-code">{{ tiddler.fields.registered_postcode }}</span>
+						{% endif %}
+					</div>
+				</div>
+				<div id="registered_map" class='map' style="width:690px; height:400px"></div>
+			</div>
+		</div>
+
+		<div class='record'>
+			<div class='tab'>
+				<h3>Identifiers</h3>				
+			</div>
+			<div class='entitycontent'>
+				<table>
+					<tbody>
+						<tr>
+							<td class='labelwidth'>
+								<label>Registration Number:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['registration_number__operational_'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>SWIFT BIC:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['swift_bic'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Primary Exchange:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['primary_listing_exchange'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Primary Ticker Code:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['ticker_code'] }}</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class='record'>
+			<div class='tab'>
+				<h3>Industrial Classifications</h3>				
+			</div>
+			<div class='entitycontent'>
+				<table>
+					<tbody>
+						<tr>
+							<td class='labelwidth'>
+								<label>US SIC Code:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['us_sic_code'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>US SIC Description:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['us_sic_description'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>NAICS Code:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['naics_code'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>NAICS Description:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['naics_description'] }}</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class='record'>
+			<div class='tab'>
+				<h3>Hierarchy Information</h3>				
+			</div>
+			<div class='entitycontent'>
+				<table>
+					<tbody>
+						<tr>
+							<td class='labelwidth'>
+								<label>Entity Type:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['entity_type'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Immediate Parent:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['immediate_parent_name'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Immediate Parent AVID:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['immediate_parent_avid'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Ultimate Parent:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['ultimate_parent_name'] }}</span>
+							</td>
+						</tr>
+						<tr>
+							<td class='labelwidth'>
+								<label>Ultimate Parent AVID:</label>
+							</td>
+							<td>
+								<span>{{ tiddler.fields['ultimate_parent_avid'] }}</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!--<div class='record'>
+			<div class='tab '>
+				<h3>Registered Address</h3>				
+			</div>
+			<div class='entitycontent'>
+				<div>United States</div>
+				<div id="registered_map"></div>
+			</div>
+		</div>-->
+	</div>
+	<div class="alt-buttons small">
+		<span class="label">other formats:&nbsp;</span>
+		<a href="{{ tiddler.title }}.json">json</a> |
+		<a href="{{ tiddler.title }}.txt">text</a>
+		<!--<a href="{{ tiddler.title }}.edit">edit</a>-->
+	</div>
+</div>
+{% endblock %}
