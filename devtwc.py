@@ -7,6 +7,7 @@ config = {
         'tiddlywebplugins.pathinfohack',
         'tiddlywebplugins.static', # a development trick so I can use CherryPy - symlink your static folder here
     ],
+    'twanager_plugins': ['tiddlywebplugins.wikidata'],
     'maps_api_key': 'ABQIAAAAfIA5i-5lcivJMUvTzLDrmxRO20Db7Xdd4lc_seIy4R9wZKUPyhSJfJnlwAdfjEPLHleUU5PcZhxZxA', # http://myavoxdata.com/
 	'server_host': {
 		'host': 'test.myavoxdata.com',
