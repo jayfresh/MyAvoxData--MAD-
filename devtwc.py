@@ -7,6 +7,14 @@ config = {
         'tiddlywebplugins.pathinfohack',
         'tiddlywebplugins.static', # a development trick so I can use CherryPy - symlink your static folder here
     ],
+    'server_store': ['tiddlywebplugins.diststore', {
+            'main': ['text', {'store_root': 'store'}],
+            'extras': [
+                (r'^avox$', ['tiddlywebplugins.wikidata.madsql',
+                    {'db_config': 'mysql://avox@localhost/avox?charset=utf8'}]),
+                    #{'db_config': 'sqlite:///test.db'}]),
+                ],
+            }],
     'twanager_plugins': ['tiddlywebplugins.wikidata'],
     'maps_api_key': 'ABQIAAAAfIA5i-5lcivJMUvTzLDrmxRO20Db7Xdd4lc_seIy4R9wZKUPyhSJfJnlwAdfjEPLHleUU5PcZhxZxA', # http://myavoxdata.com/
 	'server_host': {
