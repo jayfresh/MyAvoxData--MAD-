@@ -5,7 +5,6 @@ config = {
         'tiddlywebplugins.wikidata',
         'tiddlywebplugins.methodhack',
         'tiddlywebplugins.pathinfohack',
-        'tiddlywebplugins.static', # a development trick so I can use CherryPy - symlink your static folder here
     ],
     'server_store': ['tiddlywebplugins.diststore', {
             'main': ['text', {'store_root': 'store'}],
