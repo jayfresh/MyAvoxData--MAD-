@@ -18,6 +18,11 @@
 			</ul>
 		</div>
 	</div>-->
+	{% if commonVars.usersign['name']=='GUEST' %}
+	<div class='wrap'>
+		<p><br/>As a guest, you have access to 2539 taster records. Please log-in for access to the full database.</p>
+	</div>
+	{% endif %}
+	{% include "search.html" %}
 </div>
-{% include "search.html" %}
 {% endblock %}
