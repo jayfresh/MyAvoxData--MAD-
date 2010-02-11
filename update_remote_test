@@ -1,0 +1,1 @@
+ssh avox@217.9.192.10 "cd tiddlywebs/test.myavoxdata.com && git pull origin master"
