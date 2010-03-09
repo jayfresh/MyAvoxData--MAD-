@@ -1,0 +1,51 @@
+{% extends "wikidatabase.html" %}
+{% block body %}
+<div id="static">
+	<div class="wrap">
+		<h2>Exercising the MAD API</h2>
+		<p>Before running these tests, please <a href="/login">login</a> to be able to access MAD records. Full details of the API can be found on the <a href="/pages/api">API page</a></p>
+		<h3>Search</h3>
+		<p>Edit the search command below. The results will be shown in the adjacent textarea.</p>
+		<div class="recordsearch">
+			<textarea class="fullwidth">/search.json?q=bank&operational_city=London</textarea>
+			<div class="api_search_results fullwidth lightbluebox lightblueborder"></div>
+			<button class="search_button">go</button>
+			<button class="search_clear">clear</button>
+		</div>
+		<h3>Request a record</h3>
+		<div class="recordsearch">
+			<textarea class="fullwidth">/bags/avox/tiddlers/9342693.json</textarea>
+			<div class="api_search_results fullwidth lightbluebox lightblueborder"></div>
+			<button class="search_button">go</button>
+			<button class="search_clear">clear</button>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block postjs %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.search_button').click(function() {
+			var $queryBox = $(this).siblings('textarea');
+			var $resultsBox = $(this).siblings('div.api_search_results');
+			$.ajax({
+				url: $queryBox.val(),
+				success: function(data) {
+					if(data==="[]") {
+						$resultsBox.text('no results returned - '+data);
+					} else {
+						$resultsBox.text(data);
+					}
+				},
+				error: function(xhr) {
+					$resultsBox.text('error with search query - '+(xhr.statusText||"error message not returned"));
+				}
+			});
+		});
+		$('.search_clear').click(function() {
+			$(this).siblings('div.api_search_results').text("");
+		});
+	});
+</script>
+{% endblock %}
