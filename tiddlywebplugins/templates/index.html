@@ -17,7 +17,7 @@
 		{% if commonVars.usersign['name']=='GUEST' %}
 		<p>Please sign up below for a guest account. As a guest, you will have access to over 2,500 sample records. To assist with your searches you can <a href="/pages/sample_records.html">view more information</a> about the variety of sample records available.</p>
 		<p>If you have a full license, please <a href="/challenge">log-in</a> for access to the entire database. Alternatively, visit <a href="/pages/about.html">About MAD</a> for details about how you can subscribe.</p>
-		<form action="/createuser" id="registerform">
+		<form method="POST" action="/createuser" id="registerform">
 			<div class="lightbluebox lightblueborder panel clear">
 				<div class="left grid1col">
 					<label for="name">Your name <span>(required)</span></label>
