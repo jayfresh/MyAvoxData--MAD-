@@ -60,7 +60,7 @@
 		{% else %}
 		<p>Welcome back {{commonVars.usersign['name']}}!</p>
 			{% if 'tier1' in commonVars.usersign.roles %}
-		<p>To assist with your searches you can view more information about the variety of sample records available.</p>
+		<p>To assist with your searches you can <a href="/pages/sample_records.html">view more information</a> about the variety of sample records available.</p>
 			{%endif%}
 		{% include "search.html" %}
 		{% endif %}
