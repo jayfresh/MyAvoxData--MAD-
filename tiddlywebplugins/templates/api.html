@@ -19,6 +19,8 @@
 					<li><a href="#request_query_format">Request query format</a></li>
 				</ol></li>
 				<li><a href="#search_response">Search response</a></li>
+				<li><a href="#records">Requesting individual records</a></li>
+				<li><a href="#example">Example application</a></li>
 			</ol>
 			<hr />
 			<a name="search_request"><h3>Search request</h3></a>
@@ -311,12 +313,15 @@ document.head.appendChild(s);</code></pre>
    ...
 ]</code></pre>
 			<p>The other meta-fields referred to come from the internal structure of the <a href="http://tiddlyweb.peermore.com">TiddlyWeb</a> instance running the system. We don't remove these as they may prove useful in some applications.</p>
-			<h3>Requesting individual records</h3>
+			<a name="records"><h3>Requesting individual records</h3></a>
 			<p>Individual company records are stored by AVID, which is an 8-digit identifier. A typical URL for a company record - in this case <a href="http://www.avox.info" target="_blank">Avox Limited</a> - is:</p>
 			<pre><code>http://myavoxdata.com/bags/avox/tiddlers/16835057</code></pre>
 			<p>The URL reveals the internal structure of MAD as set up by <a href="http://tiddlyweb.peermore.com">TiddlyWeb</a> - a collection of "tiddlers" (data entities) in a "bag" (permissioned collection of tiddlers) called "avox".</p>
 			<p>Records can be requested in different formats using the same mechanisms as for search - either by adding an extension to the URL or by setting an HTTP request Accept header to the appropriate value.</p>
-			<p>The formats available are the same as for search: JSON, text and HTML. Setting a JSONP callback for a record is supported in the same way as for search.</p>	
+			<p>The formats available are the same as for search: JSON, text and HTML. Setting a JSONP callback for a record is supported in the same way as for search.</p>
+			<a name="example"><h3>Example application</h3></a>
+			<p>The <a href="http://wikidatamatcher.peermore.com">wiki-data matcher</a> is an example of an application built using the API for <a href="wiki-data.com">wiki-data.com</a>, which is identical in structure to MAD's API.</p>
+			<p>This application adds the ability to enter search criteria that you are not sure of the accuracy for, and it looks for results using combinations of the criteria. You are presented with a list of results with a percentage against each, showing how much of a match to your search criteria they are.</p>
 		</div>
 	</div>
 </div>
