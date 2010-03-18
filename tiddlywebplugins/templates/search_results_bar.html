@@ -17,37 +17,48 @@
 		</div>
 	</div>
 	<p class="darktext" id="results_count">
-	{% if resultcount == 0 -%}
-	There are no results - try <span class="filter"><a href="javascript:;">adding a filter</a></span> to include other fields in your search or <a href="/pages/suggest_new">suggest a new record</a>
+	<!-- if you're a guest, you can't see anything -->
+	{%- if commonVars.usersign.name == "GUEST" -%}
+		You don't have access to any search results until you <a href="/challenge">login</a>. Please go to the <a href="/index.html">homepage</a> to create a guest account if you don't have one.
 	{%- else -%}
-		{% if access_count == 0 %}
-			You don't have access to any search results.
-		{% elif access_count == 1 %}
-			There is 1 result.
+		{%- if resultcount == 0 -%}
+		There are no results - try <span class="filter"><a href="javascript:;">adding a filter</a></span> to include other fields in your search or <a href="/pages/suggest_new">suggest a new record</a>
+		<!-- if you're tier 1, you can only see tasters -->
+		{%- elif 'tier1' in commonVars.usersign.roles -%}
+			{%- if access_count == 0 -%}
+			As a guest you don't have access to any search results.
+			{%- elif access_count == 1 -%}
+			As a guest you have access to 1 search result.
+			{%- else -%}
+			As a guest you have access to {{access_count}} search results, showing results {{from}} to {{to}} - <span class="filter"><a href="#">add a filter</a>? </span>
+			{%- endif -%}
+			
+			{%- if resultcount == 1 -%}
+			If you <a href="/about">subscribe</a>, you will have access to 1 search result.
+			{%- else -%}
+			If you <a href="/about">subscribe</a>, you will have access to {{resultcount}} search results.
+			{%- endif -%}
+		<!-- if you're tier 2, you can see everything -->
 		{%- else -%}
-			You have access to {{access_count}} results, showing results {{from}} to {{to}}
-		{%- endif %}
-		{% if commonVars.usersign.name == "GUEST" %}.
-			{% if resultcount == 1 %}
-				<span>If you log-in, you will have access to 1 search result</span>
-			{% else %}
-				<span>If you log-in, you will have access to {{resultcount}} search results</span>
-			{% endif %}
-		{% endif %}
-		 - <span class="filter"><a href="#">add a filter</a>? </span>
-		<span id="pageDistance">{{pageDistance}}</span>
-		{%- if queryIndex == 0 -%}
-			<span class="pagebutton inactive">prev</span>
-		{%- else -%}
-			<a href="#" class="pagebutton">prev</a>
-		{%- endif -%}
-		<span class="divider">|</span>
-		{%- if count_to_end == 0 -%}
-			<span class="pagebutton inactive">next</span>
-		{%- else -%}
-			<a href="#" class="pagebutton">next</a>				
+			{%- if resultcount == 1 -%}
+			There is 1 search result
+			{%- else -%}
+			There are {{resultcount}} search results, showing results {{from}} to {{to}} - <span class="filter"><a href="#">add a filter</a>? </span>
+			{%- endif -%}
 		{%- endif -%}
 	{%- endif %}
+	<span id="pageDistance">{{pageDistance}}</span>
+	{%- if queryIndex == 0 -%}
+		<span class="pagebutton inactive">prev</span>
+	{%- else -%}
+		<a href="#" class="pagebutton">prev</a>
+	{%- endif -%}
+	<span class="divider">|</span>
+	{%- if count_to_end == 0 -%}
+		<span class="pagebutton inactive">next</span>
+	{%- else -%}
+		<a href="#" class="pagebutton">next</a>				
+	{%- endif -%}
 	</p>
 	<br class="clearboth" />
 </div>
