@@ -21,9 +21,9 @@
 			<div class="lightbluebox lightblueborder panel clear">
 				<div class="left grid1col">
 					<label for="name">Your name <span>(required)</span></label>
-					<input type="text" name="name" id="name" size="35"/>
+					<input class="required" type="text" name="name" id="name" size="35"/>
 					<label for="email">Your email address <span>(required)</span></label>
-					<input type="text" name="email" id="email" size="35"/>
+					<input class="required email" type="text" name="email" id="email" size="35"/>
 				</div>
 				<div class="left grid1col">
 					<label for="country">Contact number</label>
@@ -37,7 +37,7 @@
 				</div>
 				<div class="left">
 					<div>Are you human?</div>
-					<script src="http://api.recaptcha.net/challenge?k=6Ld8HAgAAAAAAEIb34cZepZmJ0RlfeP6CmtoMO29" type="text/javascript"/></script>
+					<script src="http://api.recaptcha.net/challenge?k=6Ld8HAgAAAAAAEIb34cZepZmJ0RlfeP6CmtoMO29" type="text/javascript"></script>
 					<noscript>
 						<iframe src="http://api.recaptcha.net/noscript?k=6Ld8HAgAAAAAAEIb34cZepZmJ0RlfeP6CmtoMO29" height="300" width="500" frameborder="0"></iframe><br />
 						<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
@@ -55,7 +55,7 @@
 				<p>{{ message }}</p>
 			</div>
 			{% endif %}
-			<input id='submit' class="darkgreen lightborder whitetext caps margintop" type="submit" value="Register for guest account"/>
+			<input id='submit' class="submitButton darkgreen lightborder whitetext caps margintop" type="submit" value="Register for guest account"/>
 		</form>
 		{% else %}
 		<p>Welcome back {{commonVars.usersign.fields.name}}!</p>
