@@ -32,6 +32,7 @@
 			<div class='entitycontent'>
 				<table>
 					<tbody>
+						{% if tiddler.fields.legal_name -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Legal Name:</label>
@@ -40,6 +41,7 @@
 								<span>{{ tiddler.fields.legal_name }}</span>
 							</td>
 						</tr>
+						{%- endif %}
 						<tr>
 							<td class='labelwidth'>
 								<label>AVID:</label>
@@ -48,6 +50,7 @@
 								<span>{{ tiddler.title }}</span>
 							</td>
 						</tr>
+						{% if tiddler.fields['previous_name_s_'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Previous Name(s):</label>
@@ -56,6 +59,8 @@
 								<span>{{ tiddler.fields['previous_name_s_'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['trades_as_name_s_'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Trades As Name(s):</label>
@@ -64,6 +69,7 @@
 								<span>{{ tiddler.fields['trades_as_name_s_'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
 					</tbody>
 				</table>
 			</div>
@@ -76,6 +82,7 @@
 			<div class='entitycontent'>
 				<table>
 					<tbody>
+						{% if tiddler.fields.trading_status -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Trading Status:</label>
@@ -84,6 +91,8 @@
 								<span>{{ tiddler.fields.trading_status }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields.company_website -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Company Website:</label>
@@ -92,6 +101,8 @@
 								<span><a href='http://{{ tiddler.fields.company_website }}'>{{ tiddler.fields.company_website }}</a></span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields.date_of_registration %}
 						<tr>
 							<td class='labelwidth'>
 								<label>Date of Incorporation:</label>
@@ -100,6 +111,8 @@
 								<span>{{ tiddler.fields.date_of_registration }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields.date_of_dissolution -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Date of Dissolution:</label>
@@ -108,6 +121,7 @@
 								<span>{{ tiddler.fields.date_of_dissolution }}</span>
 							</td>
 						</tr>
+						{%- endif %}
 					</tbody>
 				</table>
 			</div>
@@ -326,6 +340,7 @@
 			<div class='entitycontent'>
 				<table>
 					<tbody>
+						{% if tiddler.fields['entity_type'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Entity Type:</label>
@@ -334,6 +349,8 @@
 								<span class="entity_type">{{ tiddler.fields['entity_type'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['immediate_parent_name'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Immediate Parent:</label>
@@ -342,6 +359,8 @@
 								<span>{{ tiddler.fields['immediate_parent_name'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['immediate_parent_avid'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Immediate Parent AVID:</label>
@@ -350,6 +369,8 @@
 								<span>{{ tiddler.fields['immediate_parent_avid'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['ultimate_parent_name'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Ultimate Parent:</label>
@@ -358,6 +379,8 @@
 								<span>{{ tiddler.fields['ultimate_parent_name'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['ultimate_parent_avid'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Ultimate Parent AVID:</label>
@@ -366,6 +389,7 @@
 								<span>{{ tiddler.fields['ultimate_parent_avid'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
 					</tbody>
 				</table>
 			</div>
