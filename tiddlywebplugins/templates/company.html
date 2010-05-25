@@ -112,7 +112,7 @@
 				</table>
 			</div>
 		</div>
-
+		{% if tiddler.fields.operational_po_box or tiddler.fields.operational_floor or tiddler.fields.operational_building or tiddler.fields.operational_street_1 or tiddler.fields.operational_street_2 or tiddler.fields.operational_street_3 or tiddler.fields.operational_city or tiddler.fields.operational_state or tiddler.fields.operational_country or tiddler.fields.operational_postcode %}
 		<div class='record'>
 			<div class='tab'>
 				<h3>Operational Address</h3>				
@@ -163,7 +163,9 @@
 				<div id="operational_map" class='map' style="width:690px; height:400px"></div>
 			</div>
 		</div>
+		{% endif %}
 		
+		{% if tiddler.fields.registered_po_box or tiddler.fields.registered_floor or tiddler.fields.registered_building or tiddler.fields.registered_street_1 or tiddler.fields.registered_street_2 or tiddler.fields.registered_street_3 or tiddler.fields.registered_city or tiddler.fields.registered_state or tiddler.fields.registered_country or tiddler.fields.registered_postcode %}
 		<div class='record'>
 			<div class='tab'>
 				<h3>Registered Location</h3>				
@@ -207,7 +209,9 @@
 				<div id="registered_map" class='map' style="width:690px; height:400px"></div>
 			</div>
 		</div>
+		{% endif %}
 
+		{% if tiddler.fields['registration_number__jurisdiction_'] or tiddler.fields['swift_bic'] or tiddler.fields['primary_listing_exchange'] or tiddler.fields['ticker_code'] %}
 		<div class='record'>
 			<div class='tab'>
 				<h3>Identifiers</h3>				
@@ -215,6 +219,7 @@
 			<div class='entitycontent'>
 				<table>
 					<tbody>
+						{% if tiddler.fields['registration_number__jurisdiction_'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Registration Number:</label>
@@ -223,6 +228,8 @@
 								<span>{{ tiddler.fields['registration_number__jurisdiction_'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['swift_bic'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>SWIFT BIC:</label>
@@ -231,6 +238,8 @@
 								<span>{{ tiddler.fields['swift_bic'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['primary_listing_exchange'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Primary Exchange:</label>
@@ -239,6 +248,8 @@
 								<span>{{ tiddler.fields['primary_listing_exchange'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['ticker_code'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>Primary Ticker Code:</label>
@@ -247,11 +258,14 @@
 								<span>{{ tiddler.fields['ticker_code'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
 					</tbody>
 				</table>
 			</div>
 		</div>
+		{% endif %}
 		
+		{% if tiddler.fields['us_sic_code'] or tiddler.fields['us_sic_description'] or tiddler.fields['naics_code'] or tiddler.fields['naics_description'] %}
 		<div class='record'>
 			<div class='tab'>
 				<h3>Industrial Classifications</h3>				
@@ -259,6 +273,7 @@
 			<div class='entitycontent'>
 				<table>
 					<tbody>
+						{% if tiddler.fields['us_sic_code'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>US SIC Code:</label>
@@ -267,6 +282,8 @@
 								<span>{{ tiddler.fields['us_sic_code'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['us_sic_description'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>US SIC Description:</label>
@@ -275,6 +292,8 @@
 								<span>{{ tiddler.fields['us_sic_description'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['naics_code'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>NAICS Code:</label>
@@ -283,6 +302,8 @@
 								<span>{{ tiddler.fields['naics_code'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
+						{% if tiddler.fields['naics_description'] -%}
 						<tr>
 							<td class='labelwidth'>
 								<label>NAICS Description:</label>
@@ -291,10 +312,12 @@
 								<span>{{ tiddler.fields['naics_description'] }}</span>
 							</td>
 						</tr>
+						{%- endif %}
 					</tbody>
 				</table>
 			</div>
 		</div>
+		{% endif %}
 
 		<div class='record'>
 			<div class='tab'>
