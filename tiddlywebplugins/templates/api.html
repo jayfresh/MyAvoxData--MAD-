@@ -60,15 +60,19 @@
 			<p>Examples using the curl command-line tool:</p>
 			<pre><code>Using HTTP Basic Authentication
 
-curl -X GET -u <username>:<password> http://www.myavoxdata.com/bags/avox/tiddlers/16835057.json
+curl -X GET -u <username>:<password> \
+    http://www.myavoxdata.com/bags/avox/tiddlers/16835057.json
 
 Using cookies
 
 1) First use curl to post a username and password to the login form's URL and store a cookie for it locally:
-curl --cookie-jar cookies.txt -d "username=<username>&password=<password>&submit=submit" http://www.myavoxdata.com/challenge/tiddlywebplugins.wikidata.loginform
+curl --cookie-jar cookies.txt -d \
+    "username=<username>&password=<password>&submit=submit" \
+    http://www.myavoxdata.com/challenge/tiddlywebplugins.wikidata.loginform
 
 2) Pass the created cookie to subsequent API calls
-curl --cookie cookies.txt -X GET http://www.myavoxdata.com/bags/avox/tiddlers/16835057.json</code></pre>
+curl --cookie cookies.txt -X GET \
+    http://www.myavoxdata.com/bags/avox/tiddlers/16835057.json</code></pre>
 			<a name="jsonp_requests"><h4>JSONP requests</h4></a>
 			<p>You can make cross-domain JSON search requests by specifying a <code>jsonp_callback</code> parameter in the query string. This wraps the returned data with a function call to whatever you choose as the value of the <code>jsonp_callback</code> parameter.</p>
 			<p>The API understands query string parameters delimited by either "&" or ";" characters, so both these requests are equivalent:</p>
